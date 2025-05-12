@@ -1,0 +1,16 @@
+{"templates":"app","childs":[
+    {"templates":"page-main","refresh":true,"childs":[
+        {"end":true,"templates":"overview"},
+        {"hash":"members","childs":[
+            {"end":true},
+            {"hash":"elders","end":true},
+            {"hash":"assistants","end":true},
+            {"hash":"pioneers","end":true},
+            {"test":"\\d+","end":true}
+        ]},
+        {"hash":"groups","childs":[
+            {"test":"\\d+","end":true}
+        ]}
+    ]},
+    {"stop":true,"templates":"not-found"}
+]}

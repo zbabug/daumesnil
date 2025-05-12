@@ -1,0 +1,37 @@
+{
+    "type":"app",
+    "css":[
+        "css/daumesnil.css"
+    ],
+    "data":[
+        "data/app-menu.json",
+        "data/groups.json",
+        "data/members.json",
+        "data/routes.json"
+    ],
+    "images":[
+        "images/icon.png"
+    ],
+    "js":[
+        "js/data/groups.js",
+        "js/data/members.js",
+        "js/view/groups.js",
+        "js/view/members.js",
+        "js/main.js"
+    ],
+    "modules":[
+        "components",{"name":"libs","options":["jszip"]},{"name":"z","options":["async","date","lang","storage","tools"]}
+    ],
+    "properties":{
+        "icon":"images/icon.png",
+        "title":"Paris Daumesnil",
+        "name":"paris-daumesnil"
+    },
+    "system":[
+        "data/builder.json",
+        "modules/builder/js/builder.js"
+    ],
+    "templates":[
+        "templates/overview.htm"
+    ]
+}

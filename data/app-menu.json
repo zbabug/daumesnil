@@ -1,0 +1,14 @@
+[
+    {"caption":"Paris Daumesnil","childs":[
+        {"childs":[
+            {"caption":"Accueil","hash":"#","default":true}
+        ]},
+        {"caption":"MEMBRES","childs":[
+            {"caption":"Liste complète","hash":"#members"},
+            {"caption":"Anciens","hash":"#members/elders"},
+            {"caption":"Assistants","hash":"#members/assistants"},
+            {"caption":"Pionniers","hash":"#members/pioneers"}
+        ]},
+        {"caption":"GROUPES","childs":[]}
+    ]}
+]

@@ -1,0 +1,37 @@
+.--hover{
+    cursor: pointer;
+}
+
+.--hover:hover{
+    background-color: hsl(var(--hue),var(--saturation),95%);
+}
+
+.--hover *{
+    cursor: inherit;
+}
+
+.--tag{
+    font-size: 8px; padding: 1px 2px; border-radius: 3px;
+    background-color: hsl(var(--hue),var(--saturation),90%);
+    overflow: hidden; color: hsl(var(--hue),var(--saturation),40%)
+}
+
+.--red{
+    --hue: 0; --saturation: 100%;
+}
+
+.--purple{
+    --hue: 300; --saturation: 70%;
+}
+
+.--yellow{
+    --hue: 60; --saturation: 100%;
+}
+
+.--mobile-wrap{
+    flex-wrap: nowrap;
+}
+
+.--mobile .--mobile-wrap{
+    flex-wrap: wrap;
+}

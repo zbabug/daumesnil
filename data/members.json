@@ -1,0 +1,14 @@
+[
+    {"id":1,"lastname":"Bergère","firstname":"Christian","group":1,"elder":true},
+    {"id":2,"lastname":"Desnos","firstname":"Jean-Pierre","group":1,"elder":true},
+    {"id":3,"lastname":"Cellac","firstname":"Denis","group":2,"elder":true,"pioneer":true},
+    {"id":4,"lastname":"Le Carre","firstname":"Jean-Philippe","group":2,"elder":true},
+    {"id":5,"lastname":"Corial","firstname":"Fabrice","group":3,"elder":true},
+    {"id":6,"lastname":"Moyal","firstname":"David","group":3,"servant":true},
+    {"id":7,"lastname":"Ludoski","firstname":"Joël","group":4,"elder":true,"pioneer":true},
+    {"id":8,"lastname":"Pothin","firstname":"Jean-Paul","group":4,"servant":true},
+    {"id":9,"lastname":"Denoux","firstname":"Lionel","group":5,"elder":true,"pioneer":true},
+    {"id":10,"lastname":"Vizzi","firstname":"Michael","group":5,"servant":true,"pioneer":true},
+    {"id":11,"lastname":"Xaysena","firstname":"Sane","group":6,"elder":true,"pioneer":true},
+    {"id":12,"lastname":"Gendrey","firstname":"Aurélien","group":6,"elder":true}
+]
