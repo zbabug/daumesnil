@@ -1,6 +1,7 @@
 function members_show(o){
 	let list = o.list;
 	console.log(list);
+	let property = o.property || "fullname";
 
 	if (o.title){
 		document.title = o.title;
@@ -9,9 +10,9 @@ function members_show(o){
 
 	let parent = document.getElementById("page-main");
 
-	dom({parent,cn:"--flex-32",childs:[
+	dom({parent,cn:"--flex-col-32",style:"align-items:flex-start;",childs:[
 		{type:"h2",inner:o.subtitle+" ("+list.length+")"},
-		{cn:"--flex-8",childs:list.map(m=>({cn:"block",inner:m.fullname}))}
+		{cn:"--flex-col-8",childs:list.map(m=>({cn:"block",inner:m[property]}))}
 	]});
 }
 
@@ -29,7 +30,13 @@ routes.on(/^#members\/\d+$/,event=>{
 routes.on("#members",event=>{
 	members_show({list:Member.all,
 		title:"Membres de l'assemblée",
-		subtitle:"Liste des membres de l'assemblée"});
+		subtitle:"Liste des membres de l'assemblée (par nom)"});
+});
+
+routes.on("#members/firstname",event=>{
+	let list = Member.all.sort((a,b)=>a.revers_fullname.localeCompare(b.revers_fullname));
+	members_show({list,property:"revers_fullname",title:"Membres de l'assemblée",
+		subtitle:"Liste des membres de l'assemblée (par prénom)"});
 });
 
 routes.on("#members/elders",event=>{

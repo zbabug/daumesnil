@@ -19,9 +19,9 @@ routes.on(/^#groups\/\d+$/,event=>{
             {type:"h3",inner:"Responsable: <b>"+group.overseer.fullname+"</b>"},
             {type:"h3",inner:"Adjoint: <b>"+group.assistant.fullname+"</b>"}
         ]},
-        {cn:"--flex-col-8",childs:[
+        {cn:"--flex-col-8",style:"align-items:flex-start",childs:[
             {type:"h3",inner:"Liste des membres ("+list.length+")"},
-            {cn:"--flex-8",childs:list.map(m=>({cn:"block",inner:m.fullname}))}
+            {cn:"--flex-col-8",childs:list.map(m=>({cn:"block",inner:m.fullname}))}
         ]}
 	]});
 });

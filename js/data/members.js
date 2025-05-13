@@ -24,6 +24,7 @@ class Member{
 	get lastname(){return this.#data.lastname||""}
 	get firstname(){return this.#data.firstname||""}
 	get fullname(){return [this.lastname,this.firstname].filter(o=>o).join` `}
+	get revers_fullname(){return [this.firstname,this.lastname].filter(o=>o).join` `}
 	get sortname(){return [this.lastname,this.firstname].join`|`}
 
 	get elder(){return !!this.#data.elder}

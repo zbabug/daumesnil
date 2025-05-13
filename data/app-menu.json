@@ -4,7 +4,8 @@
             {"caption":"Accueil","hash":"#","default":true}
         ]},
         {"caption":"MEMBRES","childs":[
-            {"caption":"Liste complète","hash":"#members"},
+            {"caption":"Liste complète (par nom)","hash":"#members"},
+            {"caption":"Liste complète (par prénom)","hash":"#members/firstname"},
             {"caption":"Anciens","hash":"#members/elders"},
             {"caption":"Assistants","hash":"#members/assistants"},
             {"caption":"Pionniers","hash":"#members/pioneers"}
