@@ -107,27 +107,3 @@ routes.on("#members",event=>{
 		title:"Membres de l'assemblée",
 		subtitle:"Liste des membres de l'assemblée"});
 });
-
-routes.on("#members/firstname",event=>{
-	let list = Member.all.sort((a,b)=>a.revers_fullname.localeCompare(b.revers_fullname));
-	members_show({list,property:"revers_fullname",title:"Membres de l'assemblée",
-		subtitle:"Liste des membres de l'assemblée (par prénom)"});
-});
-
-routes.on("#members/elders",event=>{
-	let list = Member.all.filter(o=>o.elder);
-	members_show({list,title:"Anciens",
-		subtitle:"Liste des anciens"});
-});
-
-routes.on("#members/assistants",event=>{
-	let list = Member.all.filter(o=>o.servant);
-	members_show({list,title:"Assistants",
-		subtitle:"Liste des assistants"});
-});
-
-routes.on("#members/pioneers",event=>{
-	let list = Member.all.filter(o=>o.pioneer);
-	members_show({list,title:"Pionniers",
-		subtitle:"Liste des pionniers"});
-});

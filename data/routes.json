@@ -3,10 +3,6 @@
         {"end":true,"templates":"overview"},
         {"hash":"members","childs":[
             {"end":true},
-            {"hash":"firstname","end":true},
-            {"hash":"elders","end":true},
-            {"hash":"assistants","end":true},
-            {"hash":"pioneers","end":true},
             {"test":"\\d+","end":true}
         ]},
         {"hash":"groups","childs":[

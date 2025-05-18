@@ -17,6 +17,7 @@
         "js/data/members.js",
         "js/view/groups.js",
         "js/view/members.js",
+        "js/view/overview.js",
         "js/main.js"
     ],
     "modules":[
