@@ -32,4 +32,5 @@ class Member{
 	get pioneer(){return !!this.#data.pioneer}
 
 	get group(){return +this.#data.group}
+	get gender(){return +this.#data.gender||0}
 }
