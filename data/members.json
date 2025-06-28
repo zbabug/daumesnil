@@ -13,7 +13,7 @@
     {"id":12,"lastname":"Gendrey","firstname":"Aurélien","group":6,"elder":true,"gender":1},
 
     {"id":13,"lastname":"Auger","firstname":"Lucilia","group":1,"gender":2},
-    {"id":14,"lastname":"Aumaitre","firstname":"Ferdy","group":1,"gender":1},
+    {"id":14,"lastname":"Aumaitre","firstname":"Ferdy","group":1,"gender":2},
     {"id":15,"lastname":"Azzouni","firstname":"Corinne","group":1,"gender":2},
     {"id":16,"lastname":"Bergère","firstname":"Véronique","group":1,"pioneer":true,"gender":2},
     {"id":17,"lastname":"Beynier","firstname":"Sarai","group":1,"pioneer":true,"gender":2},
