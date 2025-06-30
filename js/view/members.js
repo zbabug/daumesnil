@@ -70,7 +70,27 @@ async function members_show(o){
 		dom({el:e.h3,inner:o.subtitle+" ("+list.length+"/"+fulllist.length+")"});
 		dom({el:e.container,inner:"",childs:list.map(m=>{
 			let childs = [{inner:m[property]}];
-			if (m.spouse) childs.push({style:"font-size:0.7em",inner:m.spouse[property]});
+			let parent = m.parent.sort((a,b)=>a[property].localeCompare(b[property]));
+			let children = m.children.sort((a,b)=>a[property].localeCompare(b[property]));
+			if (m.spouse) childs.push({cn:"--flex-4",style:"font-size:0.7em;align-items:center",childs:[
+				{cn:"material-symbols-outlined",inner:"person_heart"},
+				{inner:m.spouse[property]}
+			]});
+			parent.forEach(o=>{
+				childs.push({cn:"--flex-4",style:"font-size:0.7em;align-items:center",childs:[
+					{cn:"material-symbols-outlined",inner:"family_restroom"},
+					{inner:o[property]}
+				]});
+			});
+			children.forEach(o=>{
+				childs.push({cn:"--flex-4",style:"font-size:0.7em;align-items:center",childs:[
+					{cn:"material-symbols-outlined",inner:"supervisor_account"},
+					{inner:o[property]}
+				]});
+			});
+			if (!m.publisher) childs.push({cn:"--flex-4",style:"font-size:0.7em;align-items:center",childs:[
+				{style:"font-style:italic",inner:"Pas proclamateur"}
+			]});
 			return {cn:"block",childs}
 		})});
 	};

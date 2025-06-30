@@ -20,10 +20,29 @@ class Member{
 				if (mss!=m) throw new Error(`[member] id ${ms.id} invalid spouse`);
 				if (ms.lastname!=m.lastname) console.warn(`[member] id ${m.id}/${ms.id} "${m.lastname}/${ms.lastname}" spouse lastname`);
 			}
+		});
+		Member.#all.forEach(m=>{
+			// spouse
+			let ms = m.spouse;
 			// search for spouse
 			if (!ms && m.gender==1) {
-				let a = Member.#all.filter(o=>o.lastname==m.lastname&&o.gender!=m.gender&&!o.spouse);
-				a.forEach(ms=>console.info(`[member] propose id=${m.id} "${m.fullname}" SPOUSE id=${ms.id} "${ms.fullname}"`))
+				let parent = m.parent;
+				let sibling = m.sibling;
+				let a = Member.#all.filter(o=>o.lastname==m.lastname&&o.gender!=m.gender&&!o.spouse&&!sibling.includes(o)&&!parent.includes(o));
+				a.forEach(ms=>console.info(`[member] SPOUSE id=${m.id} "${m.fullname}" => id=${ms.id} "${ms.fullname}"`))
+			}
+			{
+				// search for family
+				let parent = m.parent;
+				let children = [m.children,m.spouse?.children].flat(3);
+				let sibling = [m.sibling,parent.map(p=>p.children)].flat(3);
+				let spouse = [m.spouse,...sibling.filter(o=>o.gender==1).map(o=>o.spouse),...parent.map(o=>o.spouse)];
+				Member.#all.forEach(o=>{
+					if (o==m) return;
+					if (o.lastname!=m.lastname) return;
+					if (sibling.includes(o) || parent.includes(o) || children.includes(o) || spouse.includes(o)) return;
+					console.info(`[member] FAMILY id=${m.id} "${m.fullname}" => id=${o.id} "${o.fullname}"`)
+				});
 			}
 		});
 		//
@@ -49,9 +68,19 @@ class Member{
 	get elder(){return !!this.#data.elder}
 	get servant(){return !!this.#data.servant}
 	get pioneer(){return !!this.#data.pioneer}
+	get publisher(){return this.#data.publisher!==false}
 
 	get group(){return +this.#data.group}
 	get gender(){return +this.#data.gender||0}
 
 	get spouse(){return Member.get(this.#data.spouse)}
+	get children(){return (this.#data.children||[]).map(id=>Member.get(id))}
+	get parent(){return Member.all.filter(o=>o.children.includes(this))}
+	get sibling(){
+		let a = [];
+		this.parent.forEach(p=>p.children.forEach(m=>{
+			if (!a.includes(m)) a.push(m);
+		}));
+		return a;
+	}
 }
