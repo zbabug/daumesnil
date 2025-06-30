@@ -8,7 +8,7 @@ routes.on(/^#groups\/\d+$/,async event=>{
 	document.title = title;
 	document.body.querySelector('section.app .app--subtitle').innerHTML=title;
 
-    let fulllist = Member.all.filter(m=>m.group==id);
+    let fulllist = Member.all.filter(m=>!m.disabled&&m.group==id);
 	let property = "fullname";
 
 	let parent = document.getElementById("page-main");
@@ -71,7 +71,11 @@ routes.on(/^#groups\/\d+$/,async event=>{
 
 	let refresh=()=>{
 		dom({el:e.h3,inner:"Liste des membres ("+list.length+"/"+fulllist.length+")"});
-		dom({el:e.container,inner:"",childs:list.map(m=>({cn:"block",inner:m[property]}))});
+		dom({el:e.container,inner:"",childs:list.map(m=>{
+			let childs = [{inner:m[property]}];
+			if (m.spouse) childs.push({style:"font-size:0.7em",inner:m.spouse[property]});
+			return {cn:"block",childs}
+		})});
 	};
 
 	let el = dom({parent,cn:"--flex-col-32",style:"align-items:flex-start;",childs:[

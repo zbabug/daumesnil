@@ -1,5 +1,5 @@
 async function members_show(o){
-	let fulllist = o.list;
+	let fulllist = o.list.filter(o=>!o.disabled);
 	let property = o.property || "fullname";
 
 	if (o.title){
@@ -68,7 +68,11 @@ async function members_show(o){
 
 	let refresh=()=>{
 		dom({el:e.h3,inner:o.subtitle+" ("+list.length+"/"+fulllist.length+")"});
-		dom({el:e.container,inner:"",childs:list.map(m=>({cn:"block",inner:m[property]}))});
+		dom({el:e.container,inner:"",childs:list.map(m=>{
+			let childs = [{inner:m[property]}];
+			if (m.spouse) childs.push({style:"font-size:0.7em",inner:m.spouse[property]});
+			return {cn:"block",childs}
+		})});
 	};
 
 	let el = dom({parent,cn:"--flex-col-32",style:"align-items:flex-start;",childs:[
