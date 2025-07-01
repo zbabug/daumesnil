@@ -161,6 +161,7 @@
     {"id":203,"lastname":"Mascarell","firstname":"Gisela","group":0,"gender":2},
     {"id":204,"lastname":"Mascarell","firstname":"Laurent","group":0,"gender":1,"spouse":203},
     {"id":205,"lastname":"Zagrencu","firstname":"Ina","group":0,"gender":2},
-    {"id":206,"lastname":"Kasia","firstname":"Lydienne","group":0,"gender":2}
+    {"id":206,"lastname":"Kasia","firstname":"Lydienne","group":0,"gender":2},
+    {"id":207,"lastname":"Mbwaki","firstname":"Eric","group":0,"gender":1}
 
 ]
