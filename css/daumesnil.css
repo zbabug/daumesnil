@@ -35,3 +35,9 @@
 .--mobile .--mobile-wrap{
     flex-wrap: wrap;
 }
+
+.member-image {
+    width: 32px;
+    min-height: 32px;
+    object-fit: cover;
+}

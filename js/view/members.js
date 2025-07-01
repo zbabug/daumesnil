@@ -1,3 +1,33 @@
+function member_dom(m,property="fullname"){
+	let childs = [{inner:m[property]}];
+	let parent = m.parent.sort((a,b)=>a[property].localeCompare(b[property]));
+	let children = m.children.sort((a,b)=>a[property].localeCompare(b[property]));
+	if (m.spouse) childs.push({cn:"--flex-4",style:"font-size:0.7em;align-items:center",childs:[
+		{cn:"material-symbols-outlined",inner:"person_heart"},
+		{inner:m.spouse[property]}
+	]});
+	parent.forEach(o=>{
+		childs.push({cn:"--flex-4",style:"font-size:0.7em;align-items:center",childs:[
+			{cn:"material-symbols-outlined",inner:"family_restroom"},
+			{inner:o[property]}
+		]});
+	});
+	children.forEach(o=>{
+		childs.push({cn:"--flex-4",style:"font-size:0.7em;align-items:center",childs:[
+			{cn:"material-symbols-outlined",inner:"supervisor_account"},
+			{inner:o[property]}
+		]});
+	});
+	if (!m.publisher) childs.push({cn:"--flex-4",style:"font-size:0.7em;align-items:center",childs:[
+		{style:"font-style:italic",inner:"Pas proclamateur"}
+	]});
+	if (m.image) return {cn:"block",childs:{cn:"--flex-4",childs:[
+		{type:"img",cn:"member-image",attributes:{src:m.image.url}},
+		{cn:"--flex-col",childs}
+	]}}
+	return {cn:"block",childs};
+}
+
 async function members_show(o){
 	let fulllist = o.list.filter(o=>!o.disabled);
 	let property = o.property || "fullname";
@@ -68,31 +98,7 @@ async function members_show(o){
 
 	let refresh=()=>{
 		dom({el:e.h3,inner:o.subtitle+" ("+list.length+"/"+fulllist.length+")"});
-		dom({el:e.container,inner:"",childs:list.map(m=>{
-			let childs = [{inner:m[property]}];
-			let parent = m.parent.sort((a,b)=>a[property].localeCompare(b[property]));
-			let children = m.children.sort((a,b)=>a[property].localeCompare(b[property]));
-			if (m.spouse) childs.push({cn:"--flex-4",style:"font-size:0.7em;align-items:center",childs:[
-				{cn:"material-symbols-outlined",inner:"person_heart"},
-				{inner:m.spouse[property]}
-			]});
-			parent.forEach(o=>{
-				childs.push({cn:"--flex-4",style:"font-size:0.7em;align-items:center",childs:[
-					{cn:"material-symbols-outlined",inner:"family_restroom"},
-					{inner:o[property]}
-				]});
-			});
-			children.forEach(o=>{
-				childs.push({cn:"--flex-4",style:"font-size:0.7em;align-items:center",childs:[
-					{cn:"material-symbols-outlined",inner:"supervisor_account"},
-					{inner:o[property]}
-				]});
-			});
-			if (!m.publisher) childs.push({cn:"--flex-4",style:"font-size:0.7em;align-items:center",childs:[
-				{style:"font-style:italic",inner:"Pas proclamateur"}
-			]});
-			return {cn:"block",childs}
-		})});
+		dom({el:e.container,inner:"",childs:list.map(m=>member_dom(m,property))});
 	};
 
 	let el = dom({parent,cn:"--flex-col-32",style:"align-items:flex-start;",childs:[

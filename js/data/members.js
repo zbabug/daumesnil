@@ -10,6 +10,11 @@ class Member{
 			if (Member.get(m.id)) throw new Error(`[member] id ${m.id} already exist`);
 			Member.#all.push(m);
 		}
+		// images
+		for (let m of Member.#all) {
+			let bf = builder.get("images/members/"+m.id+".jpg");
+			if (bf) m.data.image = {bf,url:await bf.url()};
+		}
 		//
 		Member.#all.forEach(m=>{
 			// auto spouse
@@ -61,6 +66,7 @@ class Member{
 	get disabled(){return !!this.#data.disabled}
 	get lastname(){return this.#data.lastname||""}
 	get firstname(){return this.#data.firstname||""}
+
 	get fullname(){return [this.lastname,this.firstname].filter(o=>o).join` `}
 	get revers_fullname(){return [this.firstname,this.lastname].filter(o=>o).join` `}
 	get sortname(){return [this.lastname,this.firstname].join`|`}
@@ -72,6 +78,8 @@ class Member{
 
 	get group(){return +this.#data.group}
 	get gender(){return +this.#data.gender||0}
+
+	get image(){return this.#data.image}
 
 	get spouse(){return Member.get(this.#data.spouse)}
 	get children(){return (this.#data.children||[]).map(id=>Member.get(id))}
