@@ -1,5 +1,22 @@
+// TOOLS
+{
+
+	//DOWNLOAD IMAGE from WhatsApp
+	let DI=()=>{
+		let po=el=>{while(el){if (el.classList.contains("overlay")) return el; el=el.parentNode}};
+		[...document.querySelectorAll("img")].filter(o=>o.width>600)
+			.forEach(img=>{let a=document.createElement("a");a.href=img.src;
+				a.download=`${po(img)?.querySelector("span")?.textContent||"file"}.jpg`;
+				console.log(a.download);
+				navigator.clipboard.writeText(a.download);
+				document.body.append(a);a.click()
+			})};
+
+}
+
+
 function member_dom(m,property="fullname"){
-	let childs = [{inner:m[property]}];
+	let childs = [{cn:"--flex-4",style:"align-items:center",childs:[{inner:m[property]}]}];
 	let parent = m.parent.sort((a,b)=>a[property].localeCompare(b[property]));
 	let children = m.children.sort((a,b)=>a[property].localeCompare(b[property]));
 	if (m.spouse) childs.push({cn:"--flex-4",style:"font-size:0.7em;align-items:center",childs:[
@@ -18,9 +35,7 @@ function member_dom(m,property="fullname"){
 			{inner:o[property]}
 		]});
 	});
-	if (!m.publisher) childs.push({cn:"--flex-4",style:"font-size:0.7em;align-items:center",childs:[
-		{style:"font-style:italic",inner:"Pas proclamateur"}
-	]});
+	if (!m.publisher) childs[0].childs.push({cn:"material-symbols-outlined",inner:"cancel"});
 	if (m.image) return {cn:"block",childs:{cn:"--flex-4",childs:[
 		{type:"img",cn:"member-image",attributes:{src:m.image.url}},
 		{cn:"--flex-col",childs}
@@ -28,18 +43,8 @@ function member_dom(m,property="fullname"){
 	return {cn:"block",childs};
 }
 
-async function members_show(o){
-	let fulllist = o.list.filter(o=>!o.disabled);
-	let property = o.property || "fullname";
-
-	if (o.title){
-		document.title = o.title;
-		document.body.querySelector('section.app .app--subtitle').innerHTML=o.title;
-	}
-
-	let parent = document.getElementById("page-main");
-
-	let filters = [
+const members_filters = {cn:"--flex-col-8",childs:[
+	{cn:"--flex-8",style:"background-color:#eee",childs:[
 		{type:"label",cn:"checkbox",childs:[
 			{type:"input",attributes:{type:"checkbox","data-property":"masculine"}},
 			{type:"span",cn:"checkbox--checked material-symbols-outlined",inner:"check_box"},
@@ -63,7 +68,9 @@ async function members_show(o){
 			{type:"span",cn:"checkbox--checked material-symbols-outlined",inner:"check_box"},
 			{type:"span",cn:"checkbox--blank material-symbols-outlined",inner:"check_box_outline_blank"},
 			{type:"span",inner:"Assistant"}
-		]},
+		]}
+	]},
+	{cn:"--flex-8",childs:[
 		{type:"label",cn:"checkbox",childs:[
 			{type:"input",attributes:{type:"checkbox","data-property":"pioneer"}},
 			{type:"span",cn:"checkbox--checked material-symbols-outlined",inner:"check_box"},
@@ -71,12 +78,30 @@ async function members_show(o){
 			{type:"span",inner:"Pionnier"}
 		]},
 		{type:"label",cn:"checkbox",childs:[
+			{type:"input",attributes:{type:"checkbox","data-property":"publisher"}},
+			{type:"span",cn:"checkbox--checked material-symbols-outlined",inner:"check_box"},
+			{type:"span",cn:"checkbox--blank material-symbols-outlined",inner:"check_box_outline_blank"},
+			{type:"span",inner:"Proclamateur"}
+		]},
+		{type:"label",cn:"checkbox",childs:[
 			{type:"input",attributes:{type:"checkbox","data-property":"firstname"}},
 			{type:"span",cn:"checkbox--checked material-symbols-outlined",inner:"check_box"},
 			{type:"span",cn:"checkbox--blank material-symbols-outlined",inner:"check_box_outline_blank"},
 			{type:"span",inner:"Trier par prénom"}
 		]}
-	];
+	]}
+]};
+
+async function members_show(o){
+	let fulllist = o.list.filter(o=>!o.disabled);
+	let property = o.property || "fullname";
+
+	if (o.title){
+		document.title = o.title;
+		document.body.querySelector('section.app .app--subtitle').innerHTML=o.title;
+	}
+
+	let parent = document.getElementById("page-main");
 
 	let list = [];
 
@@ -87,6 +112,7 @@ async function members_show(o){
 		let p = property = f.firstname ? "revers_fullname" : "fullname";
 		list = fulllist.filter(o=>{
 			if (f.pioneer && !o.pioneer) return;
+			if (f.publisher && !o.publisher) return;
 
 			if (o.gender==1 && f.masculine) return true;
 			if (o.gender==2 && f.feminine) return true;
@@ -103,14 +129,14 @@ async function members_show(o){
 
 	let el = dom({parent,cn:"--flex-col-32",style:"align-items:flex-start;",childs:[
 		{type:"h2",inner:o.title},
-		{cn:"--flex-8",childs:filters},
+		members_filters,
 		{type:"h3"},
 		{cn:"--flex-col-8"}
 	],onrun:{fieldchange:update}});
 
 	let e = {
 		h3:el.querySelector("h3"),
-		container:el.querySelector("div.--flex-col-8")
+		container:el.children[3]
 	};
 
 	let fields = new Fields();

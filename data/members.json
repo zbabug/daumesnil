@@ -124,8 +124,8 @@
     {"id":117,"lastname":"Mahieux","firstname":"Olivier","group":5,"gender":1},
     {"id":118,"lastname":"Maugars","firstname":"Séverine","group":5,"gender":2},
     {"id":120,"lastname":"Médina","firstname":"Mathias","group":5,"gender":1},
-    {"id":121,"lastname":"Molina","firstname":"Juan","group":5,"gender":1,"spouse":122},
-    {"id":122,"lastname":"Molina","firstname":"Monica","group":5,"gender":2},
+    {"id":121,"lastname":"Molina","firstname":"Juan","group":5,"gender":1,"spouse":122,"children":[208]},
+    {"id":122,"lastname":"Molina","firstname":"Monica","group":5,"gender":2,"children":[208]},
     {"id":123,"lastname":"Orloc","firstname":"Gérard","group":5,"servant":true,"gender":1,"spouse":124},
     {"id":124,"lastname":"Orloc","firstname":"Marie-Hélène","group":5,"gender":2},
     {"id":125,"lastname":"Salondy","firstname":"Loïck","group":5,"gender":1,"spouse":126},
@@ -144,7 +144,7 @@
     {"id":136,"lastname":"Gendrey","firstname":"Enya","group":6,"gender":2,"children":[202]},
     {"id":137,"lastname":"Ghemel","firstname":"Anaïs","group":6,"gender":2},
     {"id":138,"lastname":"Ghemel","firstname":"Mickaël","group":6,"gender":1,"spouse":137},
-    {"id":139,"lastname":"Guy","firstname":"Stéphanie","group":6,"gender":2},
+    {"id":139,"lastname":"Guy","firstname":"Stéphanie","group":6,"gender":2,"children":[209]},
     {"id":140,"lastname":"Maury","firstname":"Monique","group":6,"gender":2},
     {"id":141,"lastname":"Nalliah","firstname":"Priskella","group":6,"gender":2},
     {"id":142,"lastname":"Renard","firstname":"Christine","group":6,"pioneer":true,"gender":2},
@@ -162,6 +162,8 @@
     {"id":204,"lastname":"Mascarell","firstname":"Laurent","group":0,"gender":1,"spouse":203},
     {"id":205,"lastname":"Zagrencu","firstname":"Ina","group":0,"gender":2},
     {"id":206,"lastname":"Kasia","firstname":"Lydienne","group":0,"gender":2},
-    {"id":207,"lastname":"Mbwaki","firstname":"Eric","group":0,"gender":1}
+    {"id":207,"lastname":"Mbwaki","firstname":"Éric","group":0,"gender":1},
+    {"id":208,"lastname":"Molina","firstname":"Émilie","publisher":false,"group":5,"gender":2},
+    {"id":209,"lastname":"Guy","firstname":"Kilyan","publisher":false,"group":6,"gender":1}
 
 ]
