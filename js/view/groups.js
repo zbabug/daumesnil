@@ -33,8 +33,10 @@ routes.on(/^#groups\/\d+$/,async event=>{
 	};
 
 	let refresh=()=>{
+		let f = fields.values;
+		let md = f.mini?member_dom_mini:member_dom;
 		dom({el:e.h3,inner:"Liste des membres ("+list.length+"/"+fulllist.length+")"});
-		dom({el:e.container,inner:"",childs:list.map(m=>member_dom(m,property))});
+		dom({el:e.container,inner:"",childs:list.map(m=>md(m,property))});
 	};
 
 	let el = dom({parent,cn:"--flex-col-32",style:"align-items:flex-start;",childs:[
@@ -46,7 +48,7 @@ routes.on(/^#groups\/\d+$/,async event=>{
         {cn:"--flex-col-8",style:"align-items:flex-start",childs:[
             {id:"subtitle",type:"h3"},
 			members_filters,
-       		{id:"container",cn:"--flex-col-8"}
+       		{id:"container",cn:"--flex-8"}
         ]}
 	],onrun:{fieldchange:update}});
 

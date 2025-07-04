@@ -41,3 +41,9 @@
     min-height: 32px;
     object-fit: cover;
 }
+
+.member-image-big {
+    width: 130px;
+    height: 180px;
+    object-fit: cover;
+}

@@ -14,8 +14,7 @@
 
 }
 
-
-function member_dom(m,property="fullname"){
+function member_dom_mini(m,property="fullname"){
 	let childs = [{cn:"--flex-4",style:"align-items:center",childs:[{inner:m[property]}]}];
 	let parent = m.parent.sort((a,b)=>a[property].localeCompare(b[property]));
 	let children = m.children.sort((a,b)=>a[property].localeCompare(b[property]));
@@ -41,6 +40,40 @@ function member_dom(m,property="fullname"){
 		{cn:"--flex-col",childs}
 	]}}
 	return {cn:"block",childs};
+}
+
+function member_dom(m,property="fullname"){
+	let childs = [];
+	let parent = m.parent.sort((a,b)=>a[property].localeCompare(b[property]));
+	let children = m.children.sort((a,b)=>a[property].localeCompare(b[property]));
+	let name = {cn:"--flex-col",style:"align-items:center",childs:[]};
+	if (property=="fullname"){
+		name.childs.push({inner:m.lastname});
+		name.childs.push({inner:m.firstname});
+	} else {
+		name.childs.push({inner:m.firstname});
+		name.childs.push({inner:m.lastname});
+	}
+	if (m.image) childs.push({type:"img",cn:"member-image-big",attributes:{src:m.image.url}});
+	childs.push(name);
+	if (m.spouse) childs.push({cn:"--flex-4",style:"font-size:0.7em;align-items:center",childs:[
+		{cn:"material-symbols-outlined",inner:"person_heart"},
+		{inner:m.spouse[property]}
+	]});
+	parent.forEach(o=>{
+		childs.push({cn:"--flex-4",style:"font-size:0.7em;align-items:center",childs:[
+			{cn:"material-symbols-outlined",inner:"family_restroom"},
+			{inner:o[property]}
+		]});
+	});
+	children.forEach(o=>{
+		childs.push({cn:"--flex-4",style:"font-size:0.7em;align-items:center",childs:[
+			{cn:"material-symbols-outlined",inner:"supervisor_account"},
+			{inner:o[property]}
+		]});
+	});
+	if (!m.publisher) name.childs.push({cn:"material-symbols-outlined",inner:"cancel"});
+	return {cn:"block",childs:{cn:"--flex-col-4",style:"align-items:center",childs}};
 }
 
 const members_filters = {cn:"--flex-col-8",childs:[
@@ -88,6 +121,12 @@ const members_filters = {cn:"--flex-col-8",childs:[
 			{type:"span",cn:"checkbox--checked material-symbols-outlined",inner:"check_box"},
 			{type:"span",cn:"checkbox--blank material-symbols-outlined",inner:"check_box_outline_blank"},
 			{type:"span",inner:"Trier par prénom"}
+		]},
+		{type:"label",cn:"checkbox",childs:[
+			{type:"input",attributes:{type:"checkbox","data-property":"mini"}},
+			{type:"span",cn:"checkbox--checked material-symbols-outlined",inner:"check_box"},
+			{type:"span",cn:"checkbox--blank material-symbols-outlined",inner:"check_box_outline_blank"},
+			{type:"span",inner:"Miniature"}
 		]}
 	]}
 ]};
@@ -123,15 +162,17 @@ async function members_show(o){
 	};
 
 	let refresh=()=>{
+		let f = fields.values;
+		let md = f.mini?member_dom_mini:member_dom;
 		dom({el:e.h3,inner:o.subtitle+" ("+list.length+"/"+fulllist.length+")"});
-		dom({el:e.container,inner:"",childs:list.map(m=>member_dom(m,property))});
+		dom({el:e.container,inner:"",childs:list.map(m=>md(m,property))});
 	};
 
 	let el = dom({parent,cn:"--flex-col-32",style:"align-items:flex-start;",childs:[
 		{type:"h2",inner:o.title},
 		members_filters,
 		{type:"h3"},
-		{cn:"--flex-col-8"}
+		{cn:"--flex-8"}
 	],onrun:{fieldchange:update}});
 
 	let e = {
