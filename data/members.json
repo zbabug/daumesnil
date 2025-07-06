@@ -162,7 +162,7 @@
     {"id":204,"lastname":"Mascarell","firstname":"Laurent","group":0,"gender":1,"spouse":203},
     {"id":205,"lastname":"Zagrencu","firstname":"Ina","group":0,"gender":2},
     {"id":206,"lastname":"Kasia","firstname":"Lydienne","group":0,"gender":2},
-    {"id":207,"lastname":"Mbwaki","firstname":"Éric","group":0,"gender":1},
+    {"id":207,"lastname":"Mbwaki","firstname":"Éric","publisher":false,"group":0,"gender":1},
     {"id":208,"lastname":"Molina","firstname":"Émilie","publisher":false,"group":5,"gender":2},
     {"id":209,"lastname":"Guy","firstname":"Kilyan","publisher":false,"group":6,"gender":1},
     {"id":210,"lastname":"Moyal","firstname":"Shirel","publisher":false,"group":3,"gender":2},
