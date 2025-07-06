@@ -47,3 +47,9 @@
     height: 180px;
     object-fit: cover;
 }
+
+.game-whoami-member-image {
+    width: 300px;
+    height: 400px;
+    object-fit: cover;
+}

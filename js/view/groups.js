@@ -12,6 +12,7 @@ routes.on(/^#groups\/\d+$/,async event=>{
 	let property = "fullname";
 
 	let parent = document.getElementById("page-main");
+	parent.classList.remove("--page");
 
 	let list = [];
 

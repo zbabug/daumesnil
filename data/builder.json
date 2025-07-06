@@ -32,6 +32,7 @@
         "images/members/34.jpg",
         "images/members/36.jpg",
         "images/members/38.jpg",
+        "images/members/41.jpg",
         "images/members/45.jpg",
         "images/members/47.jpg",
         "images/members/49.jpg",
@@ -124,6 +125,7 @@
         "modules/builder/js/builder.js"
     ],
     "templates":[
+        "templates/context-menu.htm",
         "templates/overview.htm"
     ]
 }

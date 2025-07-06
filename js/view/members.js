@@ -141,6 +141,7 @@ async function members_show(o){
 	}
 
 	let parent = document.getElementById("page-main");
+	parent.classList.remove("--page");
 
 	let list = [];
 
@@ -204,3 +205,31 @@ routes.on("#members",event=>{
 		title:"Membres de l'assemblée",
 		subtitle:"Liste des membres de l'assemblée"});
 });
+
+function game_whoami(){
+	console.log("[members] start game whoami...");
+	let list = Member.all.filter(o=>!o.disabled&&o.image);
+	console.log(list);
+
+	let el = document.getElementById("page-main");
+
+	let next=()=>{
+		let m = list[Math.random()*list.length|0];
+		show_member(m);
+	};
+
+	let show_member=m=>{
+		dom({el,inner:"",childs:[
+			{type:"img",cn:"game-whoami-member-image",attributes:{src:m.image.url},onrun:{click:()=>show_member_name(m)}}
+		]});
+	};
+
+	let show_member_name=m=>{
+		dom({el,inner:"",childs:[
+			{type:"img",cn:"game-whoami-member-image",attributes:{src:m.image.url},onrun:{click:next}},
+			{type:"h3",inner:m.fullname,onrun:{click:next}}
+		]});
+	};
+
+	next();
+}

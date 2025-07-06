@@ -6,6 +6,7 @@ window.addEventListener("builderready",async ()=>{
 		data[0].childs[2].childs=Group.all.map(o=>({"caption":o.name,"hash":"#groups/"+o.id}));
 		App.menu.load(data);
 		routes.force().run();
+		game_whoami();
 	}).catch();
 });
 

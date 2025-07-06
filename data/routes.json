@@ -1,5 +1,5 @@
 {"templates":"app","childs":[
-    {"templates":"page-main","refresh":true,"childs":[
+    {"templates":["page-main","cm-main"],"refresh":true,"childs":[
         {"end":true,"templates":"overview"},
         {"hash":"members","childs":[
             {"end":true},
