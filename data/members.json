@@ -122,7 +122,7 @@
     {"id":115,"lastname":"Lebec","firstname":"Nathan","group":5,"gender":1},
     {"id":116,"lastname":"Madruga","firstname":"Alzira","group":5,"gender":2},
     {"id":117,"lastname":"Mahieux","firstname":"Olivier","group":5,"gender":1},
-    {"id":118,"lastname":"Maugars","firstname":"Séverine","group":5,"gender":2},
+    {"id":118,"lastname":"Maugars","firstname":"Séverine","group":5,"gender":2,"children":[212,213]},
     {"id":120,"lastname":"Médina","firstname":"Mathias","group":5,"gender":1},
     {"id":121,"lastname":"Molina","firstname":"Juan","group":5,"gender":1,"spouse":122,"children":[208]},
     {"id":122,"lastname":"Molina","firstname":"Monica","group":5,"gender":2,"children":[208]},
@@ -166,6 +166,10 @@
     {"id":208,"lastname":"Molina","firstname":"Émilie","publisher":false,"group":5,"gender":2},
     {"id":209,"lastname":"Guy","firstname":"Kilyan","publisher":false,"group":6,"gender":1},
     {"id":210,"lastname":"Moyal","firstname":"Shirel","publisher":false,"group":3,"gender":2},
-    {"id":211,"lastname":"Moyal","firstname":"Ruben","publisher":false,"group":3,"gender":1}
+    {"id":211,"lastname":"Moyal","firstname":"Ruben","publisher":false,"group":3,"gender":1},
+    {"id":212,"lastname":"Maugars","firstname":"Ossea?","publisher":false,"group":5,"gender":2},
+    {"id":213,"lastname":"Maugars","firstname":"Chloé","publisher":false,"group":5,"gender":2},
+    {"id":214,"lastname":"Guzman","firstname":"Sonia","publisher":false,"group":0,"gender":2},
+    {"id":215,"lastname":"Guzman","firstname":"Marleni","group":0,"gender":2}
 
 ]

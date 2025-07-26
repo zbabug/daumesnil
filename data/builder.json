@@ -55,6 +55,7 @@
         "images/members/73.jpg",
         "images/members/78.jpg",
         "images/members/79.jpg",
+        "images/members/80.jpg",
         "images/members/81.jpg",
         "images/members/82.jpg",
         "images/members/83.jpg",
@@ -73,7 +74,6 @@
         "images/members/109.jpg",
         "images/members/112.jpg",
         "images/members/114.jpg",
-        "images/members/118.jpg",
         "images/members/119.jpg",
         "images/members/120.jpg",
         "images/members/121.jpg",
@@ -102,7 +102,11 @@
         "images/members/208.jpg",
         "images/members/209.jpg",
         "images/members/210.jpg",
-        "images/members/211.jpg"
+        "images/members/211.jpg",
+        "images/members/212.jpg",
+        "images/members/213.jpg",
+        "images/members/214.jpg",
+        "images/members/215.jpg"
     ],
     "js":[
         "js/data/groups.js",
