@@ -6,7 +6,7 @@
     {"id":5,"lastname":"Corial","firstname":"Fabrice","group":3,"elder":true,"gender":1,"spouse":68,"children":[67]},
     {"id":6,"lastname":"Moyal","firstname":"David","group":3,"servant":true,"gender":1,"spouse":73,"children":[210,211]},
     {"id":7,"lastname":"Ludoski","firstname":"Joël","group":4,"elder":true,"pioneer":true,"gender":1,"spouse":93},
-    {"id":8,"lastname":"Pothin","firstname":"Jean-Paul","group":4,"servant":true,"gender":1},
+    {"id":8,"lastname":"Pothin","firstname":"Jean-Paul","group":4,"servant":true,"gender":1,"children":[99],"spouse":100},
     {"id":9,"lastname":"Denoux","firstname":"Lionel","group":5,"elder":true,"pioneer":true,"gender":1,"spouse":109},
     {"id":10,"lastname":"Vizzi","firstname":"Michael","group":5,"servant":true,"pioneer":true,"gender":1,"disabled":true},
     {"id":11,"lastname":"Xaysena","firstname":"Sane","group":6,"elder":true,"pioneer":true,"gender":1,"spouse":148},
@@ -102,7 +102,7 @@
     {"id":97,"lastname":"Nicolas","firstname":"Elena","group":4,"pioneer":true,"gender":2},
     {"id":98,"lastname":"N'Sangu","firstname":"Elisabeth","group":4,"gender":2},
     {"id":99,"lastname":"Pothin","firstname":"Janaïna","group":4,"gender":2},
-    {"id":100,"lastname":"Pothin","firstname":"Marcia","group":4,"gender":2},
+    {"id":100,"lastname":"Pothin","firstname":"Marcia","group":4,"gender":2,"children":[99]},
     {"id":101,"lastname":"Simard","firstname":"Corinne","group":4,"gender":2},
     {"id":102,"lastname":"Simard","firstname":"Josselin","group":4,"gender":1,"spouse":101},
 

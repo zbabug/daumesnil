@@ -6,6 +6,7 @@ window.addEventListener("builderready",async ()=>{
 		data[0].childs[2].childs=Group.all.map(o=>({"caption":o.name,"hash":"#groups/"+o.id}));
 		App.menu.load(data);
 		routes.force().run();
+		console.log(`photos: %c ${Member.all.filter(o=>o.image).length}/${Member.all.length} (${Member.all.filter(o=>o.image).length*100/Member.all.length|0}%) `,`background-color:#ccc;color:#777`)
 	}).catch();
 });
 
