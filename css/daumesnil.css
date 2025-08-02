@@ -53,3 +53,7 @@
     height: 400px;
     object-fit: cover;
 }
+
+.--mobile .view--main{
+	display: flex; gap: 16px; flex-direction: column; padding: 24px;
+}
