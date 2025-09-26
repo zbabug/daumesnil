@@ -7,7 +7,8 @@
         "data/app-menu.json",
         "data/groups.json",
         "data/members.json",
-        "data/routes.json"
+        "data/routes.json",
+        "data/S21.xlsx"
     ],
     "images":[
         "images/icon.png",
@@ -130,7 +131,7 @@
         "js/main.js"
     ],
     "modules":[
-        "components",{"name":"libs","options":["jszip"]},{"name":"z","options":["async","date","lang","storage","tools"]}
+        "components",{"name":"libs","options":["jszip"]},{"name":"z","options":["async","date","lang","storage","tools","xlsx"]}
     ],
     "properties":{
         "icon":"images/icon.png",
