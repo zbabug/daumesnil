@@ -75,6 +75,9 @@ class Member{
 	get servant(){return !!this.#data.servant}
 	get pioneer(){return !!this.#data.pioneer}
 	get publisher(){return this.#data.publisher!==false}
+	get active(){return this.#data.active!==false}
+
+	get position(){return this.#data.address?.position}
 
 	get group(){return +this.#data.group}
 	get gender(){return +this.#data.gender||0}

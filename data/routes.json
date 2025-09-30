@@ -7,6 +7,9 @@
         ]},
         {"hash":"groups","childs":[
             {"test":"\\d+","end":true}
+        ]},
+        {"hash":"maps","childs":[
+            {"end":true}
         ]}
     ]},
     {"stop":true,"templates":"not-found"}

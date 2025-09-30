@@ -1,7 +1,8 @@
 [
     {"caption":"Paris Daumesnil","childs":[
         {"childs":[
-            {"caption":"Accueil","hash":"#","default":true}
+            {"caption":"Accueil","hash":"#","default":true},
+            {"caption":"Carte","hash":"#maps"}
         ]},
         {"caption":"MEMBRES","childs":[
             {"caption":"Liste complète","hash":"#members"}
