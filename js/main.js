@@ -3,11 +3,23 @@ window.addEventListener("builderready",async ()=>{
 	await Member.load();
 	await Group.load();
 	await App.data.get("data/app-menu.json")?.json().then(async data=>{
-		data[0].childs[2].childs=Group.all.map(o=>({"caption":o.name,"hash":"#groups/"+o.id}));
+		data[0].childs[2].childs=Group.all.filter(o=>o.id<10).map(o=>({"caption":o.name,"hash":"#groups/"+o.id}));
+		data[0].childs[3].childs=Group.all.filter(o=>o.id>=10).map(o=>({"caption":o.name,"hash":"#groups/"+o.id}));
 		App.menu.load(data);
-		routes.force().run();
 		console.log(`photos: %c ${Member.all.filter(o=>o.image).length}/${Member.all.length} (${Member.all.filter(o=>o.image).length*100/Member.all.length|0}%) `,`background-color:#ccc;color:#777`)
 		//import_S21();
+		await import_groups();
+		let mp = Member.all.filter(m=>!m.position);
+		if (mp.length){
+			console.error("missing position");
+			console.log(mp);
+			mp.forEach(m=>{
+				let data = m.data;
+				if (!data.address) data.address = {"street":"","postcode":"","town":""};
+				if (!data.address.position) data.address.position = {"lat":48.857903,"lon":2.392341};
+			})
+		}
+		routes.force().run();
 	}).catch();
 });
 
@@ -180,6 +192,63 @@ async function import_S21(){
 		if (!m.address?.bano?.position) return;
 		let {street,postcode,town,bano} = m.address;
 		m.member.data.address = {street,postcode,town,position:bano.position};
+	});
+
+	// export
+	let json = "[\n"+Member.all.sort((a,b)=>a.id-b.id).map(m=>{
+		data = JSON.parse(JSON.stringify(m.data));
+		delete data.image;
+		return "\t"+JSON.stringify(data);
+	}).join`,\n`+"\n]";
+	console.log(json);
+}
+
+async function import_groups(){
+	let XLSX = Z.XLSX.create();
+	await XLSX.loadData(await builder.get("data/groupes.xlsx").base64());
+	let sheet = await XLSX.readSheet(1);
+	// console.log(XLSX);
+	// console.log(sheet);
+	let rows = sheet.rows;
+	let members = Member.all;
+	// console.log(mn);
+	// console.log(members);
+	console.log(rows);
+
+	let groups = Group.all;
+	rows.find(o=>o.r==3)?.cells.forEach(cell=>{
+		let g = groups.find(g=>g.id>10 && Z.Tools.normalize(g.name)==Z.Tools.normalize(cell.v));
+		if (!g) return void console.error('group not found '+cell.v);
+		console.log(`Groupe: ${g.name} (${g.id})`);
+		rows.forEach(row=>{
+			if (row.r<4) return;
+			let c = row.cells.find(o=>o.c==cell.c);
+			if (typeof c?.v != "string") return;
+			let name = {
+				"Ladjyn Mickaella":"Ladjyn Mikaëlla",
+				"Rafelana Annaëlle":"Rafelana Anaëlle",
+				"Chaloub Aïcha":"Chalhoub Aïcha",
+				"Chaloub Kemil":"Chalhoub Kemil",
+				"Xaysena Sane (PP), (A)":"Xaysena Pierre (Sane)",
+				"Tiétébou Florence":"Tiétiébou Florence",
+			}[c.v.trim()] || c.v;
+			name = Z.Tools.normalize(name.trim());
+			let m = members.find(m=>name.startsWith(Z.Tools.normalize(m.fullname)));
+			if (!m) return void console.error(' --> member not found '+c.v);
+			console.log(' --> '+m.fullname);
+			m.data.newgroup = g.id;
+		});
+	});
+
+	members.forEach(m=>{
+		if (!m.newgroup) m.data.newgroup = 10;
+	});
+
+	return;
+
+	// add new group
+	members.forEach(m=>{
+		
 	});
 
 	// export

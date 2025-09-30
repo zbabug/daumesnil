@@ -1,7 +1,19 @@
 routes.on("#",async()=>{
 	let el=document.querySelector("#groups");
 	dom({el,childs:Group.all
-		.map(o=>({type:"a",inner:o.name,attributes:{href:"#groups/"+o.id}}))});
+		.filter(o=>o.id<10)
+		.map(o=>({cn:"--flex-8",childs:[
+			{type:"a",inner:o.name,attributes:{href:"#groups/"+o.id}},
+			{type:"a",inner:"(carte)",attributes:{href:"#maps/"+o.id}}
+		]}))});
+
+	el=document.querySelector("#new-groups");
+	dom({el,childs:Group.all
+		.filter(o=>o.id>10)
+		.map(o=>({cn:"--flex-8",childs:[
+			{type:"a",inner:o.name,attributes:{href:"#groups/"+o.id}},
+			{type:"a",inner:"(carte)",attributes:{href:"#maps/"+o.id}}
+		]}))});
 });
 
 let TERRITORY = [{"lon":2.3886680603027344,"lat":48.826531358347054},{"lon":2.3654937744140625,"lat":48.845739667840384},{"lon":2.3694419860839844,"lat":48.85375978148347},{"lon":2.37579345703125,"lat":48.8512748132034},{"lon":2.396221160888672,"lat":48.84867675994343},{"lon":2.4145889282226562,"lat":48.8469823047543},{"lon":2.4125289916992188,"lat":48.83613643374479},{"lon":2.4092674255371094,"lat":48.83421556597207},{"lon":2.414073944091797,"lat":48.833424599010925},{"lon":2.4228286743164062,"lat":48.83613643374479},{"lon":2.428150177001953,"lat":48.83896110549604},{"lon":2.4339866638183594,"lat":48.8409947705306},{"lon":2.434673309326172,"lat":48.84517482268592},{"lon":2.447376251220703,"lat":48.843706195467924},{"lon":2.4533843994140625,"lat":48.83545848882338},{"lon":2.4655723571777344,"lat":48.826531358347054},{"lon":2.46368408203125,"lat":48.82020230247927},{"lon":2.458362579345703,"lat":48.817489605290135},{"lon":2.4394798278808594,"lat":48.8188459722355},{"lon":2.4341583251953125,"lat":48.82020230247927},{"lon":2.4303817749023438,"lat":48.82325391133874},{"lon":2.4231719970703125,"lat":48.82393202140893},{"lon":2.4193954467773438,"lat":48.824158056060064},{"lon":2.4159622192382812,"lat":48.824723138227746},{"lon":2.4121856689453125,"lat":48.824723138227746},{"lon":2.407379150390625,"lat":48.826531358347054},{"lon":2.4010276794433594,"lat":48.829582581850715},{"lon":2.39227294921875,"lat":48.82754845349204}];
@@ -13,14 +25,15 @@ routes.on("#maps",/^#maps\/\d+$/,async()=>{
 
 	let min={lon:0,lat:0},max={lon:0,lat:0};
 	
-	let members = Member.all.filter(o=>o.position);
+	let members = Member.all.filter(o=>o.position && !o.disabled);
 	let group = /^#maps\/\d+$/.test(routes.hash) ? +routes.hash.split`/`.pop() : -1;
-	if (group>=0) members = members.filter(o=>o.group==group);
+	if (group>=0 && group<10) members = members.filter(o=>o.group==group);
+	if (group>=10) members = members.filter(o=>o.newgroup==group);
 
 	let g = group<0 ? null : Group.get(group);
 	console.log(g);
 
-	let {lon,lat} = members[0].position;
+	let {lon,lat} = members?.length ? members[0].position : {};
 	min.lon = max.lon = lon;
 	min.lat = max.lat = lat;
 	members.forEach(o=>{

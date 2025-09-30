@@ -6,9 +6,11 @@ routes.on(/^#groups\/\d+$/,async event=>{
 
 	let title = `Groupe de prédication - ${group.name}`;
 	document.title = title;
-	document.body.querySelector('section.app .app--subtitle').innerHTML=title;
+	
+	document.body.querySelector('section.app .app--subtitle').innerHTML = title;
 
     let fulllist = Member.all.filter(m=>!m.disabled&&m.group==id);
+	if (id>9) fulllist = Member.all.filter(m=>!m.disabled&&m.newgroup==id);
 	let property = "fullname";
 
 	let parent = document.getElementById("page-main");
@@ -42,7 +44,13 @@ routes.on(/^#groups\/\d+$/,async event=>{
 
 	let el = dom({parent,cn:"--flex-col-32",style:"align-items:flex-start;",childs:[
 		{type:"h2",inner:title},
-		{cn:"--flex-col-8",childs:[
+		{cn:"--flex-col-8",style:"align-items:flex-start",childs:[
+			{type:"a",attributes:{href:"#maps/"+id},childs:[
+				{type:"button",cn:'button button--contained',attributes:{color:"blue"},childs:[
+					{type:"span",cn:"material-symbols-outlined",inner:"map"},
+					{type:"span",inner:"Carte"}
+				]}
+			]},
             {type:"h3",inner:"Responsable: <b>"+group.overseer.fullname+"</b>"},
             {type:"h3",inner:"Adjoint: <b>"+group.assistant.fullname+"</b>"}
         ]},

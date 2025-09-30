@@ -4,5 +4,14 @@
     {"id":3,"name":"Gare de Lyon","overseer":5,"assistant":6},
     {"id":4,"name":"Picpus","overseer":7,"assistant":8},
     {"id":5,"name":"Reuilly","overseer":9,"assistant":200},
-    {"id":6,"name":"Vincennes","overseer":11,"assistant":12}
+    {"id":6,"name":"Vincennes","overseer":11,"assistant":12},
+
+    {"id":11,"name":"Sibuet","overseer":1,"assistant":2},
+    {"id":12,"name":"Charenton","overseer":3,"assistant":50},
+    {"id":13,"name":"Netter","overseer":5,"assistant":61},
+    {"id":14,"name":"Nation","overseer":7,"assistant":218},
+    {"id":15,"name":"Reuilly","overseer":9,"assistant":200},
+    {"id":16,"name":"Picpus","overseer":129,"assistant":11},
+    {"id":17,"name":"Soult","overseer":4,"assistant":58},
+    {"id":18,"name":"Vincennes","overseer":12,"assistant":6}
 ]

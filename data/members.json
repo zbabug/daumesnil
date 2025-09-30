@@ -47,7 +47,7 @@
 	{"id":46,"lastname":"Le Carre","firstname":"Fabienne","group":2,"gender":2,"children":[45,47],"spouse":4,"address":{"street":"66-68 Bd Soult","postcode":75012,"town":"Paris","position":{"lat":48.843076,"lon":2.4102}}},
 	{"id":47,"lastname":"Le Carre","firstname":"Océane","group":2,"gender":2,"address":{"street":"66-68 Bd Soult","postcode":75012,"town":"Paris","position":{"lat":48.843076,"lon":2.4102}}},
 	{"id":48,"lastname":"Martin","firstname":"Olivier","group":2,"servant":true,"gender":1,"address":{"street":"6 rue Dagorno","postcode":75012,"town":"Paris","position":{"lat":48.842364,"lon":2.398485}}},
-	{"id":49,"lastname":"Maurer","firstname":"Chloé","group":2,"gender":2,"address":{"street":"","postcode":"","town":"","position":{"lat":48.857903,"lon":2.392341}}},
+	{"id":49,"lastname":"Maurer","firstname":"Chloé","group":2,"gender":2},
 	{"id":50,"lastname":"Messomo","firstname":"Alexandre","group":2,"gender":1,"spouse":51,"servant":true,"address":{"street":"3 avenue de Saint-Mandé","postcode":75012,"town":"Paris","position":{"lat":48.845707,"lon":2.395725}}},
 	{"id":51,"lastname":"Messomo","firstname":"Chloé","group":2,"pioneer":true,"gender":2,"spouse":50,"address":{"street":"3 avenue de Saint-Mandé","postcode":75012,"town":"Paris","position":{"lat":48.845707,"lon":2.395725}}},
 	{"id":52,"lastname":"Rafelana","firstname":"Anaëlle","group":2,"gender":2,"address":{"street":"78 Bd Soult","postcode":75012,"town":"Paris","position":{"lat":48.84502,"lon":2.41084}}},
@@ -193,5 +193,10 @@
 	{"id":408,"lastname":"Merda-Klein","firstname":"Ruben","group":0,"gender":1,"active":false,"address":{"street":"25 rue Popincourt","postcode":75011,"town":"Paris","position":{"lat":48.858153,"lon":2.376673}}},
 	{"id":409,"lastname":"Natchimie","firstname":"Sabine","group":0,"gender":2,"active":false,"address":{"street":"Rue du Sahel","postcode":75012,"town":"Paris","position":{"lat":48.84123,"lon":2.401288}}},
 	{"id":410,"lastname":"Natchimie","firstname":"Sarah","group":0,"gender":2,"active":false,"address":{"street":"Rue du Sahel","postcode":75012,"town":"Paris","position":{"lat":48.84123,"lon":2.401288}}},
-	{"id":411,"lastname":"N'De","firstname":"Dorianne","group":0,"gender":2,"active":false,"address":{"street":"3 rue du Charolais","postcode":75012,"town":"Paris","position":{"lat":48.839437,"lon":2.387534}}}
+	{"id":411,"lastname":"N'De","firstname":"Dorianne","group":0,"gender":2,"active":false,"address":{"street":"3 rue du Charolais","postcode":75012,"town":"Paris","position":{"lat":48.839437,"lon":2.387534}}},
+	
+	{"id":225,"lastname":"Kibikula","firstname":"Prisca","group":2,"gender":2,"address":{"street":"7 rue Georges Gershwin","postcode":75012,"town":"Paris","position":{"lat":48.835843,"lon":2.384142}}},
+	{"id":226,"lastname":"Antoine","firstname":"Yvrose","group":0,"gender":2},
+	{"id":227,"lastname":"Cerise","firstname":"Marcel","group":0,"gender":1},
+	{"id":228,"lastname":"Bryll","firstname":"Aleksandra","group":0,"gender":2}
 ]

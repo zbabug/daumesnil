@@ -80,6 +80,7 @@ class Member{
 	get position(){return this.#data.address?.position}
 
 	get group(){return +this.#data.group}
+	get newgroup(){return +this.#data.newgroup}
 	get gender(){return +this.#data.gender||0}
 
 	get image(){return this.#data.image}
