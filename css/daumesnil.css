@@ -57,3 +57,7 @@
 .--mobile .view--main{
 	display: flex; gap: 16px; flex-direction: column; padding: 24px;
 }
+
+canvas.map{
+    position: absolute; left: 16px; top: 16px; width: calc(100% - 32px); height: calc(100% - 32px); background-color: #eee;
+}

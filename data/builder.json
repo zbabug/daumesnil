@@ -99,7 +99,6 @@
         "images/members/129.jpg",
         "images/members/132.jpg",
         "images/members/133.jpg",
-        "images/members/137.jpg",
         "images/members/138.jpg",
         "images/members/139.jpg",
         "images/members/141.jpg",
@@ -131,6 +130,7 @@
         "js/view/groups.js",
         "js/view/members.js",
         "js/view/overview.js",
+        "js/map.js",
         "js/main.js"
     ],
     "modules":[

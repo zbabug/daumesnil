@@ -9,7 +9,8 @@
             {"test":"\\d+","end":true}
         ]},
         {"hash":"maps","childs":[
-            {"end":true}
+            {"end":true},
+            {"test":"\\d+","end":true}
         ]}
     ]},
     {"stop":true,"templates":"not-found"}
