@@ -184,6 +184,7 @@ async function members_show(o){
 	let fields = new Fields();
 
 	let f = await Z.Storage.get("filters-members").catch(()=>({}));
+	Object.keys(fields.values).forEach(n=>f[n]=!!f[n]);
 	fields.write(f,{initial:true});
 
 	update();

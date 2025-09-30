@@ -5,14 +5,10 @@
     ],
     "data":[
         "data/app-menu.json",
-        "data/bano-75.json",
-        "data/bano-93.json",
-        "data/bano-94.json",
         "data/groups.json",
         "data/members.json",
         "data/routes.json",
-        "data/groupes.xlsx",
-        "data/S21.xlsx"
+        "data/groupes.xlsx"
     ],
     "images":[
         "images/icon.png",
