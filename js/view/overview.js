@@ -20,15 +20,18 @@ let TERRITORY = [{"lon":2.3886680603027344,"lat":48.826531358347054},{"lon":2.36
 
 routes.on("#maps",/^#maps\/\d+$/,async()=>{
 
+	let path = routes.hash.split`/`;
+
 	let parent = document.getElementById("page-main");
 	parent.classList.remove("--page");
 
 	let min={lon:0,lat:0},max={lon:0,lat:0};
 	
-	let members = Member.all.filter(o=>o.position && !o.disabled);
-	let group = /^#maps\/\d+$/.test(routes.hash) ? +routes.hash.split`/`.pop() : -1;
-	if (group>=0 && group<10) members = members.filter(o=>o.group==group);
-	if (group>=10) members = members.filter(o=>o.newgroup==group);
+	let all = Member.all.filter(o=>o.position && !o.disabled);
+	let members = all;
+	let group = path.length>1 ? +routes.hash.split`/`.pop() : -1;
+
+	let filter = {active:group?1:0};
 
 	let g = group<0 ? null : Group.get(group);
 	console.log(g);
@@ -48,7 +51,7 @@ routes.on("#maps",/^#maps\/\d+$/,async()=>{
 	let circleRadius = 10;
 	let points = [];
 
-	let canvas = dom({parent,type:"canvas",cn:"map",onrun:{
+	let canvas = dom({type:"canvas",cn:"map",onrun:{
 		mousewheel:event=>{
 			if (moving) return;
 			//
@@ -87,7 +90,8 @@ routes.on("#maps",/^#maps\/\d+$/,async()=>{
 			};
 			window.addEventListener("mousemove",mousemove);
 			window.addEventListener("mouseup",mouseup);
-		},mousemove:event=>{
+		},
+		mousemove:event=>{
 			let x = event.layerX, y = event.layerY;
 			let c = circle.find(o=>{
 				let distance = ((o.x-x)**2+(o.y-y)**2)**.5;
@@ -109,12 +113,38 @@ routes.on("#maps",/^#maps\/\d+$/,async()=>{
 		}
 	}});
 
+	dom({el:parent,childs:[
+		canvas,
+		{cn:"--flex-4",childs:[
+			{type:"button",cn:'button button--contained',attributes:{color:"blue"},childs:[
+				{type:"span",cn:"material-symbols-outlined",inner:"zoom_out"}
+			],onrun:{click:()=>{map.setZoom("-")}}},
+			{type:"button",cn:'button button--contained',attributes:{color:"blue"},childs:[
+				{type:"span",cn:"material-symbols-outlined",inner:"zoom_in"}
+			],onrun:{click:()=>{map.setZoom("+")}}},
+			[{f:"elder",inner:"person_heart"},{f:"active",inner:"contact_emergency"}]
+				.map(({f,inner})=>({type:"button",cn:'button button--contained',attributes:{color:"blue"},childs:[
+				{type:"span",cn:"material-symbols-outlined",inner}
+			],onrun:{click:()=>{filter[f]=((filter[f]||0)+1)%3;drawMap(map)}}}))
+		]}
+		
+	]});
+
 	let ctx = canvas.getContext('2d');
 	let width = canvas.width = canvas.clientWidth;
 	let height = canvas.height = canvas.clientHeight;
 	let circle = [], selectedCircle, map;
 
 	let drawMap=map=>{
+
+		// filter member
+		members = all.slice(0);
+		if (group>=0 && group<10) members = members.filter(o=>o.group==group && o.publisher);
+		if (group>=10) members = members.filter(o=>o.newgroup==group && o.publisher);
+		if (filter.active==1) members = members.filter(o=>o.active);
+		else if (filter.active==2) members = members.filter(o=>!o.active);
+		if (filter.elder==1) members = members.filter(o=>o.elder);
+		else if (filter.elder==2) members = members.filter(o=>!o.elder);
 		
 		// circle / members
 		circle = [];

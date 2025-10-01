@@ -227,7 +227,7 @@
 		param.setZoom = function(z){
 			if (z==="+") z=zoom+1;
 			if (z==="-") z=zoom-1;
-			if (!isFinite(z) || z<6 || z>20 || z==zoom) return;
+			if (!isFinite(z) || z<6 || z>19 || z==zoom) return;
 			param.zoom = zoom = z;
 			Init();
 		};
