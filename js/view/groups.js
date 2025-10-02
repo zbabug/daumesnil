@@ -9,6 +9,12 @@ routes.on(/^#groups\/\d+$/,async event=>{
 	
 	document.body.querySelector('section.app .app--subtitle').innerHTML = title;
 
+	[...document.querySelectorAll('a.menu-item[href]')].filter(el=>el.hash.startsWith("#maps/")).forEach(el=>{
+		let id = +el.href.split`/`.pop();
+		el.setAttribute("href","#groups/"+id);
+		el.hash = "#groups/"+id;
+	});
+
     let fulllist = Member.all.filter(m=>!m.disabled&&m.group==id);
 	if (id>9) fulllist = Member.all.filter(m=>!m.disabled&&m.newgroup==id);
 	let property = "fullname";

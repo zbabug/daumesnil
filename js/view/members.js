@@ -140,6 +140,12 @@ async function members_show(o){
 		document.body.querySelector('section.app .app--subtitle').innerHTML=o.title;
 	}
 
+	[...document.querySelectorAll('a.menu-item[href]')].filter(el=>el.hash.startsWith("#maps/")).forEach(el=>{
+		let id = +el.href.split`/`.pop();
+		el.setAttribute("href","#groups/"+id);
+		el.hash = "#groups/"+id;
+	});
+
 	let parent = document.getElementById("page-main");
 	parent.classList.remove("--page");
 

@@ -206,7 +206,7 @@ async function import_S21(){
 async function import_groups(){
 	let XLSX = Z.XLSX.create();
 	await XLSX.loadData(await builder.get("data/groupes.xlsx").base64());
-	let sheet = await XLSX.readSheet(1);
+	let sheet = await XLSX.readSheet(2);
 	// console.log(XLSX);
 	// console.log(sheet);
 	let rows = sheet.rows;
@@ -217,13 +217,14 @@ async function import_groups(){
 
 	let groups = Group.all;
 	rows.find(o=>o.r==3)?.cells.forEach(cell=>{
-		let g = groups.find(g=>g.id>10 && Z.Tools.normalize(g.name)==Z.Tools.normalize(cell.v));
+		let v = cell.v.split`(`.shift().trim();
+		let g = groups.find(g=>g.id>10 && Z.Tools.normalize(g.name)==Z.Tools.normalize(v));
 		if (!g) return void console.error('group not found '+cell.v);
 		console.log(`Groupe: ${g.name} (${g.id})`);
 		rows.forEach(row=>{
 			if (row.r<4) return;
 			let c = row.cells.find(o=>o.c==cell.c);
-			if (typeof c?.v != "string") return;
+			if (typeof c?.v != "string" || !c.v.trim()) return;
 			let name = {
 				"Ladjyn Mickaella":"Ladjyn Mikaëlla",
 				"Rafelana Annaëlle":"Rafelana Anaëlle",
@@ -243,20 +244,5 @@ async function import_groups(){
 	members.forEach(m=>{
 		if (!m.newgroup) m.data.newgroup = 10;
 	});
-
-	return;
-
-	// add new group
-	members.forEach(m=>{
-		
-	});
-
-	// export
-	let json = "[\n"+Member.all.sort((a,b)=>a.id-b.id).map(m=>{
-		data = JSON.parse(JSON.stringify(m.data));
-		delete data.image;
-		return "\t"+JSON.stringify(data);
-	}).join`,\n`+"\n]";
-	console.log(json);
 }
 
