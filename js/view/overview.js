@@ -87,12 +87,9 @@ routes.on("#maps",/^#maps\/\d+$/,async()=>{
 		{f:"elder",inner:"person_heart"},
 		{f:"servant",inner:"person_play"},
 		{f:"pioneer",inner:"diversity_4"},
-		{f:"overseer",inner:"supervised_user_circle"},
-		{f:"active",inner:"contact_emergency"}
-	];
-
-	let switchFilters = [
-		{f:"group",inner:"communities"}
+		{f:"overseer",inner:"supervised_user_circle",modulo:5,list:["inactif","on","off","overseer","assistant"]},
+		{f:"active",inner:"contact_emergency"},
+		{f:"group",inner:"communities",modulo:2,list:["off","on"]}
 	];
 
 	let g = group<0 ? null : Group.get(group);
@@ -242,23 +239,14 @@ routes.on("#maps",/^#maps\/\d+$/,async()=>{
 			{type:"button",cn:'button button--contained',attributes:{color:"blue"},childs:[
 				{type:"span",cn:"material-symbols-outlined",inner:"zoom_in"}
 			],onrun:{click:()=>{map.setZoom("+")}}},
-			filters.map(({f,inner})=>({type:"button",cn:'button button--contained',attributes:{color:["blue","green","red"][filter[f]||0]},childs:[
+			filters.map(({f,inner,list,modulo})=>({type:"button",cn:'button button--contained',attributes:{color:["blue","green","red"][filter[f]||0]},childs:[
 				{type:"span",cn:"material-symbols-outlined",inner}
 			],onrun:{click:event=>{
-				filter[f]=((filter[f]||0)+1)%3;
+				filter[f]=((filter[f]||0)+1)%(modulo||3);
 				drawMap(map);
 				let el = event.target; while (el && el.nodeName!="BUTTON") el=el.parentNode;
-				if (el) el.setAttribute("color",["blue","green","red"][filter[f]||0])
-				console.log(`filter.${f} = ${["both","yes (1)","no (2)"][filter[f]]}`);
-			}}})),
-			switchFilters.map(({f,inner})=>({type:"button",cn:'button button--contained',attributes:{color:["blue","green"][filter[f]||0]},childs:[
-				{type:"span",cn:"material-symbols-outlined",inner}
-			],onrun:{click:event=>{
-				filter[f]=((filter[f]||0)+1)%2;
-				drawMap(map);
-				let el = event.target; while (el && el.nodeName!="BUTTON") el=el.parentNode;
-				if (el) el.setAttribute("color",["blue","green"][filter[f]||0])
-				console.log(`filter.${f} = ${["off","on"][filter[f]]}`);
+				if (el) el.setAttribute("color",["blue","green","red","cyan","purple"][filter[f]||0])
+				console.log(`filter.${f} = ${(list||["both","yes","no"])[filter[f]]}`);
 			}}}))
 		]}
 		
@@ -282,9 +270,11 @@ routes.on("#maps",/^#maps\/\d+$/,async()=>{
 		}
 		filters.forEach(({f})=>{
 			if (f=="overseer"){
-				let list = g ? [g.overseer,g.assistant] : Group.all.filter(g=>g.id>10).map(g=>[g.overseer,g.assistant]).flat();
-				if (filter[f]==1) members = members.filter(o=>list.includes(o));
-				else if (filter[f]==2) members = members.filter(o=>!list.includes(o));
+				let lo = g ? [g.overseer] : Group.all.filter(g=>g.id>10).map(g=>[g.overseer]).flat();
+				let la = g ? [g.assistant] : Group.all.filter(g=>g.id>10).map(g=>[g.assistant]).flat();
+				let list = [[],[lo,la].flat(),[lo,la].flat(),lo,la][filter[f]];
+				if (filter[f]==2) members = members.filter(o=>!list.includes(o));
+				else if (filter[f]>0) members = members.filter(o=>list.includes(o));
 				return;
 			}
 			if (filter[f]==1) members = members.filter(o=>o[f]);
@@ -393,7 +383,7 @@ routes.on("#maps",/^#maps\/\d+$/,async()=>{
 		ctx.textBaseline = "middle";
 		circle.forEach(c=>{
 			let color = 210;
-			if (c.overseer || c.assistant) color = 0;
+			if (c.overseer || c.assistant) color = 0;
 			else if (c.elder || c.servant) color = 30;
 			else if (c.pioneer) color = 150;
 			let hue = c == selectedCircle ? 120 : color;
