@@ -20,12 +20,12 @@ let TERRITORY = [{"lon":2.3886680603027344,"lat":48.826531358347054},{"lon":2.36
 let filter = {active:1};
 
 let GROUPES = [
-	[{"lon":2.373518943786621,"lat":48.84520306509496},{"lon":2.386050224304199,"lat":48.83915882655357},{"lon":2.3887109756469727,"lat":48.8369273578907},{"lon":2.391328811645508,"lat":48.83729456842787},{"lon":2.395191192626953,"lat":48.83975198504332},{"lon":2.389955520629883,"lat":48.84452524288213},{"lon":2.385878562927246,"lat":48.842632940649274},{"lon":2.383260726928711,"lat":48.844864155135326},{"lon":2.3818016052246094,"lat":48.84658692362645}], //Sibuet 
-    [{"lon":2.3975086212158203,"lat":48.82870678670791},{"lon":2.4010705947875977,"lat":48.829610833052065},{"lon":2.409224510192871,"lat":48.83427206313431},{"lon":2.4034738540649414,"lat":48.83667313363422},{"lon":2.3951053619384766,"lat":48.83966724854627},{"lon":2.391200065612793,"lat":48.83729456842787},{"lon":2.3888397216796875,"lat":48.83695560495065},{"lon":2.3961353302001953,"lat":48.83099512240606}], //Charenton 
-    [{"lon":2.3692703247070312,"lat":48.84274591592381},{"lon":2.3733901977539062,"lat":48.8452877922265},{"lon":2.3860931396484375,"lat":48.83907408905306},{"lon":2.3961353302001953,"lat":48.83099512240606},{"lon":2.3975086212158203,"lat":48.82873503840306},{"lon":2.3888397216796875,"lat":48.82641834650107}], //Netter 
+	[{"lon":2.3975086212158203,"lat":48.82870678670791},{"lon":2.4010705947875977,"lat":48.829610833052065},{"lon":2.409224510192871,"lat":48.83427206313431},{"lon":2.4034738540649414,"lat":48.83667313363422},{"lon":2.3951053619384766,"lat":48.83966724854627},{"lon":2.391200065612793,"lat":48.83729456842787},{"lon":2.3888397216796875,"lat":48.83695560495065},{"lon":2.3961353302001953,"lat":48.83099512240606}], //Charenton 
     [{"lon":2.381865978240967,"lat":48.84660104443476},{"lon":2.3831963539123535,"lat":48.844850033837226},{"lon":2.385857105255127,"lat":48.8426611844918},{"lon":2.3898911476135254,"lat":48.8445393642718},{"lon":2.39027738571167,"lat":48.8442004498206},{"lon":2.3945260047912598,"lat":48.84626214393607},{"lon":2.395341396331787,"lat":48.84542900379384},{"lon":2.395920753479004,"lat":48.84876148119776},{"lon":2.3845481872558594,"lat":48.85015936119867},{"lon":2.3866939544677734,"lat":48.847405923927056}], //Nation 
-    [{"lon":2.3691415786743164,"lat":48.842689428318394},{"lon":2.3733901977539062,"lat":48.84531603457181},{"lon":2.3866939544677734,"lat":48.84737768276037},{"lon":2.3845911026000977,"lat":48.85011700177203},{"lon":2.3758363723754883,"lat":48.8512748132034},{"lon":2.3694849014282227,"lat":48.85373154390039},{"lon":2.3654937744140625,"lat":48.845739667840384}], //Reuilly 
+    [{"lon":2.3692703247070312,"lat":48.84274591592381},{"lon":2.3733901977539062,"lat":48.8452877922265},{"lon":2.3860931396484375,"lat":48.83907408905306},{"lon":2.3961353302001953,"lat":48.83099512240606},{"lon":2.3975086212158203,"lat":48.82873503840306},{"lon":2.3888397216796875,"lat":48.82641834650107}], //Netter 
     [{"lon":2.395148277282715,"lat":48.83972373956022},{"lon":2.390255928039551,"lat":48.84421457130185},{"lon":2.394547462463379,"lat":48.846276264835986},{"lon":2.395319938659668,"lat":48.84540076151223},{"lon":2.4056625366210938,"lat":48.844581728416934},{"lon":2.403430938720703,"lat":48.836757875196405}], //Picpus 
+    [{"lon":2.3691415786743164,"lat":48.842689428318394},{"lon":2.3733901977539062,"lat":48.84531603457181},{"lon":2.3866939544677734,"lat":48.84737768276037},{"lon":2.3845911026000977,"lat":48.85011700177203},{"lon":2.3758363723754883,"lat":48.8512748132034},{"lon":2.3694849014282227,"lat":48.85373154390039},{"lon":2.3654937744140625,"lat":48.845739667840384}], //Reuilly 
+    [{"lon":2.373518943786621,"lat":48.84520306509496},{"lon":2.386050224304199,"lat":48.83915882655357},{"lon":2.3887109756469727,"lat":48.8369273578907},{"lon":2.391328811645508,"lat":48.83729456842787},{"lon":2.395191192626953,"lat":48.83975198504332},{"lon":2.389955520629883,"lat":48.84452524288213},{"lon":2.385878562927246,"lat":48.842632940649274},{"lon":2.383260726928711,"lat":48.844864155135326},{"lon":2.3818016052246094,"lat":48.84658692362645}], //Sibuet 
     [{"lon":2.4056625366210938,"lat":48.844581728416934},{"lon":2.414073944091797,"lat":48.843960384029955},{"lon":2.4126148223876953,"lat":48.83613643374479},{"lon":2.409224510192871,"lat":48.834243814561155},{"lon":2.4034738540649414,"lat":48.836701380837546}], //Soult 
     [{"lon":2.395920753479004,"lat":48.84867675994343},{"lon":2.395319938659668,"lat":48.84540076151223},{"lon":2.414073944091797,"lat":48.84393214092011},{"lon":2.4146318435668945,"lat":48.84695406334869}]  //Vincennes 
 ];
@@ -35,7 +35,7 @@ function log_groups_info(){
 	console.group("Groupes");
 	Group.all.filter(o=>o.id>10).forEach(g=>{
 		let m = members.filter(m=>m.newgroup==g.id);
-		console.groupCollapsed(`${g.name} (${m.length}) A=${m.filter(m=>m.elder).length} AM=${m.filter(m=>m.servant).length} PP=${m.filter(m=>m.pioneer).length}`);
+		console.groupCollapsed(`${g.name} (${m.length}) A=${m.filter(m=>m.elder).length} AM=${m.filter(m=>m.servant).length} PP=${m.filter(m=>m.pioneer).length} F=${m.filter(m=>m.gender==1).length} S=${m.filter(m=>m.gender==2).length}`);
 		m.forEach(m=>{
 			console.log(`${m.fullname}`);
 		});
@@ -51,9 +51,9 @@ function log_groups_info(){
 		let a = [`${g.name} (${list.length})`];
 		list.forEach(m=>{
 			let o = [];
-			if (o.elder) o.push('(A)')
-			if (o.servant) o.push('(AM)')
-			if (o.pioneer) o.push('(PP)')
+			if (m.elder) o.push('(A)')
+			if (m.servant) o.push('(AM)')
+			if (m.pioneer) o.push('(PP)')
 			o = o.join`, `;
 			a.push(`${m.fullname}${o?" "+o:""}`);
 		});
@@ -61,7 +61,14 @@ function log_groups_info(){
 	});
 	let max = Math.max(...a.map(a=>a.length));
 	a = Array(max).fill(0).map((_,i)=>Array(a.length).fill(0).map((_,j)=>a[j][i]||"").join`;`);
-	navigator.clipboard.writeText(a.join`\n`);
+
+	try {
+		navigator.clipboard.writeText(a.join`\n`);
+		console.log("clipboard - groups info");
+	} catch (ex){
+		console.log("failed - clipboard - groups info");
+	}
+	
 }
 
 routes.on("#maps",/^#maps\/\d+$/,async()=>{
@@ -88,6 +95,7 @@ routes.on("#maps",/^#maps\/\d+$/,async()=>{
 		{f:"servant",inner:"person_play"},
 		{f:"pioneer",inner:"diversity_4"},
 		{f:"overseer",inner:"supervised_user_circle",modulo:5,list:["inactif","on","off","overseer","assistant"]},
+		{f:"gender",inner:"male",list:["inactif","male","female"]},
 		{f:"active",inner:"contact_emergency"},
 		{f:"group",inner:"communities",modulo:2,list:["off","on"]}
 	];
@@ -239,7 +247,7 @@ routes.on("#maps",/^#maps\/\d+$/,async()=>{
 			{type:"button",cn:'button button--contained',attributes:{color:"blue"},childs:[
 				{type:"span",cn:"material-symbols-outlined",inner:"zoom_in"}
 			],onrun:{click:()=>{map.setZoom("+")}}},
-			filters.map(({f,inner,list,modulo})=>({type:"button",cn:'button button--contained',attributes:{color:["blue","green","red"][filter[f]||0]},childs:[
+			filters.map(({f,inner,list,modulo})=>({type:"button",cn:'button button--contained',attributes:{color:["blue","green","red","cyan","purple"][filter[f]||0]},childs:[
 				{type:"span",cn:"material-symbols-outlined",inner}
 			],onrun:{click:event=>{
 				filter[f]=((filter[f]||0)+1)%(modulo||3);
@@ -269,12 +277,17 @@ routes.on("#maps",/^#maps\/\d+$/,async()=>{
 			if (group>=10) members = members.filter(o=>o.newgroup==group && o.publisher);
 		}
 		filters.forEach(({f})=>{
+			if (f=="group") return;
 			if (f=="overseer"){
 				let lo = g ? [g.overseer] : Group.all.filter(g=>g.id>10).map(g=>[g.overseer]).flat();
 				let la = g ? [g.assistant] : Group.all.filter(g=>g.id>10).map(g=>[g.assistant]).flat();
 				let list = [[],[lo,la].flat(),[lo,la].flat(),lo,la][filter[f]];
 				if (filter[f]==2) members = members.filter(o=>!list.includes(o));
 				else if (filter[f]>0) members = members.filter(o=>list.includes(o));
+				return;
+			}
+			if (f=="gender"){
+				if (filter[f]>0) members = members.filter(o=>o.gender==filter[f]);
 				return;
 			}
 			if (filter[f]==1) members = members.filter(o=>o[f]);

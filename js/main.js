@@ -2,13 +2,13 @@ window.addEventListener("builderready",async ()=>{
 	App.run();
 	await Member.load();
 	await Group.load();
+	await import_groups();
 	await App.data.get("data/app-menu.json")?.json().then(async data=>{
 		data[0].childs[2].childs=Group.all.filter(o=>o.id<10).map(o=>({"caption":o.name,"hash":"#groups/"+o.id}));
 		data[0].childs[3].childs=Group.all.filter(o=>o.id>=10).map(o=>({"caption":o.name,"hash":"#groups/"+o.id}));
 		App.menu.load(data);
 		console.log(`photos: %c ${Member.all.filter(o=>o.image).length}/${Member.all.length} (${Member.all.filter(o=>o.image).length*100/Member.all.length|0}%) `,`background-color:#ccc;color:#777`)
 		//import_S21();
-		await import_groups();
 		let mp = Member.all.filter(m=>!m.position);
 		if (mp.length){
 			console.error("missing position");
@@ -204,9 +204,10 @@ async function import_S21(){
 }
 
 async function import_groups(){
+	let sheetIndex = 2;
 	let XLSX = Z.XLSX.create();
 	await XLSX.loadData(await builder.get("data/groupes.xlsx").base64());
-	let sheet = await XLSX.readSheet(2);
+	let sheet = await XLSX.readSheet(sheetIndex);
 	// console.log(XLSX);
 	// console.log(sheet);
 	let rows = sheet.rows;
@@ -215,12 +216,35 @@ async function import_groups(){
 	// console.log(members);
 	console.log(rows);
 
-	let groups = Group.all;
+	if (sheetIndex!=2) GROUPES = [];
+
+	let groups = Group.all, id=10;
 	rows.find(o=>o.r==3)?.cells.forEach(cell=>{
 		let v = cell.v.split`(`.shift().trim();
-		let g = groups.find(g=>g.id>10 && Z.Tools.normalize(g.name)==Z.Tools.normalize(v));
+		id+=1; let data, g = new Group(data={id,name:v});
+		console.log('create group='+v);
+		rows.forEach(row=>{
+			if (row.r<4 || data.assistant) return;
+			let c = row.cells.find(o=>o.c==cell.c);
+			if (typeof c?.v != "string" || !c.v.trim()) return;
+			let name = {
+				"Xaysena Sane (PP), (A)":"Xaysena Pierre (Sane)"
+			}[c.v.trim()] || c.v;
+			name = Z.Tools.normalize(name.trim());
+			let m = members.find(m=>name.startsWith(Z.Tools.normalize(m.fullname)));
+			if (!m) return void console.error(' --> member not found '+c.v);
+			if (!data.overseer) {
+				data.overseer = m.id;
+				console.log('  overseer='+m.fullname);
+			}
+			else {
+				data.assistant = m.id;
+				console.log('  assistant='+m.fullname);
+			}
+		});
+		Group.all.push(g);
 		if (!g) return void console.error('group not found '+cell.v);
-		console.log(`Groupe: ${g.name} (${g.id})`);
+		console.log(`Groupe: ${g.name} (id=${g.id})`);
 		rows.forEach(row=>{
 			if (row.r<4) return;
 			let c = row.cells.find(o=>o.c==cell.c);

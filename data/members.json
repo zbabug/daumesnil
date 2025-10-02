@@ -79,7 +79,7 @@
 	{"id":78,"lastname":"Ramier","firstname":"Claire","group":3,"gender":2,"spouse":79,"address":{"street":"7 Av du Gal Laperrine","postcode":75012,"town":"Paris","position":{"lat":48.834151,"lon":2.406995}}},
 	{"id":79,"lastname":"Ramier","firstname":"Joël","group":3,"gender":1,"spouse":78,"address":{"street":"7 Av du Gal Laperrine","postcode":75012,"town":"Paris","position":{"lat":48.834151,"lon":2.406995}}},
 	{"id":80,"lastname":"Sintes","firstname":"Alix","group":3,"gender":2,"address":{"street":"53 rue de Montreuil","postcode":75011,"town":"Paris","position":{"lat":48.850502,"lon":2.389076}}},
-	{"id":81,"lastname":"Valier","firstname":"Tracy","group":3,"pioneer":true,"gender":2,"address":{"street":"30 ter avenue Daumesnil","postcode":75012,"town":"Paris","position":{"lat":48.847293,"lon":2.374989}}},
+	{"id":81,"lastname":"Valier","firstname":"Tracy","group":3,"pioneer":true,"gender":2},
 	{"id":82,"lastname":"Beaugendre","firstname":"Nicole","group":4,"gender":2,"address":{"street":"84 bis rue de Picpus","postcode":75012,"town":"Paris","position":{"lat":48.840883,"lon":2.398983}}},
 	{"id":83,"lastname":"Beynier","firstname":"Ana","group":4,"gender":2,"spouse":85,"address":{"street":"163 rue de Charenton","postcode":75012,"town":"Paris","position":{"lat":48.844452,"lon":2.384098}}},
 	{"id":84,"lastname":"Beynier","firstname":"Estelle","group":4,"pioneer":true,"gender":2,"spouse":86,"address":{"street":"162 bis rue de Charenton","postcode":75012,"town":"Paris","position":{"lat":48.844874,"lon":2.382386}}},
@@ -198,5 +198,6 @@
 	{"id":225,"lastname":"Kibikula","firstname":"Prisca","group":2,"gender":2,"address":{"street":"7 rue Georges Gershwin","postcode":75012,"town":"Paris","position":{"lat":48.835843,"lon":2.384142}}},
 	{"id":226,"lastname":"Antoine","firstname":"Yvrose","group":0,"gender":2},
 	{"id":227,"lastname":"Cerise","firstname":"Marcel","group":0,"gender":1},
-	{"id":228,"lastname":"Bryll","firstname":"Aleksandra","group":0,"gender":2}
+	{"id":228,"lastname":"Bryll","firstname":"Aleksandra","group":0,"gender":2},
+	{"id":229,"lastname":"Timboursaint","firstname":"Sherly","group":0,"gender":2,"pioneer":true}
 ]

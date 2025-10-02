@@ -14,7 +14,7 @@ class Group{
 		}
 		Group.#all.sort((a,b)=>a.name.localeCompare(b.name));
 	}
-	static get all(){return [...Group.#all]}
+	static get all(){return Group.#all}
 	static get(id){return Group.#all.find(o=>o.id==id)}
 	#data
 	constructor(data){
