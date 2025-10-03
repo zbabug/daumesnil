@@ -204,7 +204,7 @@ async function import_S21(){
 }
 
 async function import_groups(){
-	let sheetIndex = 2;
+	let sheetIndex = 1
 	let XLSX = Z.XLSX.create();
 	await XLSX.loadData(await builder.get("data/groupes.xlsx").base64());
 	let sheet = await XLSX.readSheet(sheetIndex);
